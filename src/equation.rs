@@ -27,23 +27,33 @@ impl From::<&str> for Equation {
 }
 
 impl Equation {
-    pub fn is_possible(&self) -> bool {
-        fn backtrack(total: i64, equation: &Equation) -> bool {
+    pub fn is_possible(
+        &self,
+        operations: Vec<fn(i64, i64) -> i64>
+    ) -> bool {
+        fn backtrack(
+            total: i64, 
+            equation: &Equation,
+            operations: &Vec<fn(i64, i64) -> i64>
+        ) -> bool {
             if equation.values.len() > 0 {
                 let mut values = equation.values.clone();
                 let top = values.remove(0);
 
                 let equation = Equation { expect: equation.expect, values };
 
-                backtrack(total + top, &equation) ||
-                backtrack(total * top, &equation) ||
-                backtrack(total.concat(top), &equation)
+                let mut chain = false;
+                for op in operations {
+                    chain = chain || backtrack(op(total, top), &equation, operations);
+                }
+
+                chain
             } else {
                 assert_eq!(equation.values, vec![]);
                 equation.expect == total
             }
         }
 
-        backtrack(0, self)
+        backtrack(0, self, &operations)
     }
 }
