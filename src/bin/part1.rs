@@ -9,7 +9,7 @@ fn main() {
     let mut sum = 0;
     for item in input.0 {
         let possible = item.is_possible();
-        println!("{:#?}", possible);
+        println!("{:?} {:#?}", item.values, possible);
         if possible { sum += item.expect };
     }
     println!("{}", sum);
