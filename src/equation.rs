@@ -2,14 +2,14 @@ use crate::equation;
 
 #[derive(Debug)]
 pub struct Equation {
-    pub expect: i32,
-    pub values: Vec<i32>,
+    pub expect: i64,
+    pub values: Vec<i64>,
 }
 
 impl From::<&str> for Equation {
     fn from(value: &str) -> Self {
         let (left, right) = value.split_once(':').unwrap(); // TODO
-        let result: i32 = left
+        let result: i64 = left
             .trim()
             .parse()
             .unwrap(); // TODO
@@ -17,7 +17,7 @@ impl From::<&str> for Equation {
         let values: Vec<_> = right
             .trim()
             .split_whitespace()
-            .map(|token| token.parse::<i32>().unwrap()) // TODO
+            .map(|token| token.parse::<i64>().unwrap()) // TODO
             .collect();
 
         Self { expect: result, values }
@@ -26,7 +26,7 @@ impl From::<&str> for Equation {
 
 impl Equation {
     pub fn is_possible(&self) -> bool {
-        fn backtrack(total: i32, equation: &Equation) -> bool {
+        fn backtrack(total: i64, equation: &Equation) -> bool {
             if equation.values.len() > 0 {
                 let mut values = equation.values.clone();
                 let top = values.remove(0);
