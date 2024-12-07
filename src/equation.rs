@@ -1,3 +1,4 @@
+#[derive(Debug)]
 pub struct Equation {
     result: i32,
     values: Vec<i32>,

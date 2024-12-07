@@ -1,5 +1,6 @@
 use crate::equation::Equation;
 
+#[derive(Debug)]
 pub struct PuzzleInput(Vec<Equation>);
 
 impl From::<&str> for PuzzleInput {
