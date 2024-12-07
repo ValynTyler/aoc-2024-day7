@@ -1,7 +1,7 @@
 use crate::equation::Equation;
 
 #[derive(Debug)]
-pub struct PuzzleInput(Vec<Equation>);
+pub struct PuzzleInput(pub Vec<Equation>);
 
 impl From::<&str> for PuzzleInput {
     fn from(value: &str) -> Self {
