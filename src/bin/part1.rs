@@ -1,4 +1,4 @@
-use aoc_2024_day7::{concat::Concat, puzzle_input::PuzzleInput};
+use aoc_2024_day7::puzzle_input::PuzzleInput;
 
 fn main() {
     println!("hello from part 1");
