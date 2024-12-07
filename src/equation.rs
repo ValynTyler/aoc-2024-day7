@@ -2,8 +2,8 @@ use crate::equation;
 
 #[derive(Debug)]
 pub struct Equation {
-    expect: i32,
-    values: Vec<i32>,
+    pub expect: i32,
+    pub values: Vec<i32>,
 }
 
 impl From::<&str> for Equation {
